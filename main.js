@@ -1295,8 +1295,8 @@
                                 ? $li.find('video')?.first()
                                 : $li.find('img')?.first();
 
-                            // Check if the node is visible and has size, 
-                            // and not the same node as last triggered one to avoid duplicated trigger 
+                            // Check if the node is visible and has size,
+                            // and not the same node as last triggered one to avoid duplicated trigger
                             // when switching resources with same container
                             if (
                                 $targetNode.length > 0 &&
@@ -1307,7 +1307,7 @@
                                 this.getBoundingClientRect().height > 64 &&
                                 $triggeredTarget?.get(0) != $targetNode?.get(0)
                             ) {
-                                // ignore the image without alt attribute, 
+                                // ignore the image without alt attribute,
                                 // because it is usually used for video thumbnail
                                 if (
                                     $targetNode.get(0).tagName === "IMG" &&
@@ -4447,7 +4447,7 @@
     /**
      * triggerDownload
      * @description Trigger download from Blob with filename.
-     * 
+     *
      * @param {Blob} blob
      * @param {string} filename
      */
@@ -5214,7 +5214,7 @@
 
     /**
      * @description Trigger React onClick event handler for the given element.
-     * @param {HTMLElement} el 
+     * @param {HTMLElement} el
      */
     function triggerReactClickHandler(el) {
         const reactKey = Object.keys(el).find(k => k.startsWith('__reactProps') || k.startsWith('__reactEventHandlers'));
@@ -5237,7 +5237,7 @@
 
     // /**
     //  * @description Get the element at the pointer position and check if it is the target element or if it is covered by another element.
-    //  * @param {JQuery<HTMLElement>} $target 
+    //  * @param {JQuery<HTMLElement>} $target
     //  * @param {number} clientX
     //  * @param {number} clientY
     //  */
@@ -5597,7 +5597,7 @@
 
     /**
      * arrangeSettingHierarchy
-     * @description Arrange specific settings under the corresponding setting. 
+     * @description Arrange specific settings under the corresponding setting.
      *
      * @return {void}
      */
