@@ -1604,45 +1604,14 @@
                     ).getTime();
 
                     if (multiple) {
-                        $resourceItems.each(function () {
-                            let element_videos = $(this).parent().parent().parent().find('video');
-                            if (element_videos && element_videos.attr('src')) {
-                                blob = true;
-                            }
-                        });
-
-                        if (blob || USER_SETTING.FORCE_RESOURCE_VIA_MEDIA) {
-                            await createMediaListDOM(
-                                state.GL_postPath,
-                                ".IG_POPUP_DIG .IG_POPUP_DIG_MAIN .IG_POPUP_DIG_BODY",
-                                _i18n("LOAD_BLOB_MULTIPLE")
-                            );
-                        }
-                        else {
-                            const $popupBody = $('.IG_POPUP_DIG .IG_POPUP_DIG_MAIN .IG_POPUP_DIG_BODY');
-                            $resourceItems.each(function () {
-                                s++;
-                                const $this = $(this);
-                                let element_videos = $this.find('video');
-                                let element_images = $this.find('._aagv img');
-                                let imgLink = (element_images.attr('srcset')) ? element_images.attr('srcset').split(" ")[0] : element_images.attr('src');
-
-                                if (element_videos && element_videos.attr('src')) {
-                                    blob = true;
-                                }
-                                if (element_images && imgLink) {
-                                    $popupBody.append(`<a datetime="${publish_time}" data-needed="direct" data-path="${state.GL_postPath}" data-name="photo" data-type="jpg" data-username="${state.GL_username || ''}" data-globalIndex="${s}" href="javascript:;" data-href="${imgLink}"><img width="100" src="${imgLink}" /><br/>- <span data-ih-locale="IMG">${_i18n("IMG")}</span> ${s} -</a>`);
-                                }
-                            });
-
-                            if (blob) {
-                                await createMediaListDOM(
-                                    state.GL_postPath,
-                                    ".IG_POPUP_DIG .IG_POPUP_DIG_MAIN .IG_POPUP_DIG_BODY",
-                                    _i18n("LOAD_BLOB_RELOAD")
-                                );
-                            }
-                        }
+                        // Instagram virtualise le carousel : seuls les slides visibles sont montés
+                        // dans le DOM, donc scraper les <li> ne renvoie jamais toutes les images.
+                        // On récupère systématiquement le carousel complet via l'API.
+                        await createMediaListDOM(
+                            state.GL_postPath,
+                            ".IG_POPUP_DIG .IG_POPUP_DIG_MAIN .IG_POPUP_DIG_BODY",
+                            _i18n("LOAD_BLOB_MULTIPLE")
+                        );
                     }
                     else {
                         if (USER_SETTING.FORCE_RESOURCE_VIA_MEDIA) {
