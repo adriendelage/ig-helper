@@ -1604,9 +1604,6 @@
                     ).getTime();
 
                     if (multiple) {
-                        // Instagram virtualise le carousel : seuls les slides visibles sont montés
-                        // dans le DOM, donc scraper les <li> ne renvoie jamais toutes les images.
-                        // On récupère systématiquement le carousel complet via l'API.
                         await createMediaListDOM(
                             state.GL_postPath,
                             ".IG_POPUP_DIG .IG_POPUP_DIG_MAIN .IG_POPUP_DIG_BODY",
